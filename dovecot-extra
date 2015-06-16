@@ -1,0 +1,39 @@
+# dovecot: imap({email}): Disconnected: Disconnected in IDLE in={bytes} out={bytes}
+# dovecot: imap({email}): Disconnected: Logged out in={bytes} out={bytes}
+# dovecot: imap({email}): Disconnected for inactivity in={bytes} out={bytes}
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: imap\([-_.@[:alnum:]]+\): Disconnected(: Disconnected in IDLE|: Logged out| for inactivity) in=[[:digit:]]+ out=[[:digit:]]+$
+
+# dovecot: imap({email}): Connection closed in={bytes} out={bytes}
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: imap\([-_.@[:alnum:]]+\): Connection closed in=[[:digit:]]+ out=[[:digit:]]+$
+
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, secured, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS: Disconnected, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS: SSL_{method}() failed: {error}, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS: SSL_{method}() syscall failed: {error}, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS handshaking: Disconnected, session=<{session_id>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS handshaking: SSL_{method}() failed: {error}, session=<{session_id}>
+# dovecot: imap-login: Disconnected (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS handshaking: SSL_{method}() syscall failed: {error}, session=<{session_id}>
+# dovecot: imap-login: Disconnected: Inactivity (no auth attempts in {s} secs): user=<>, rip={ip}, lip={ip}, TLS handshaking, session=<{session_id>
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (pop3|imap)-login: Disconnected(: Inactivity)? \(no auth attempts in [[:digit:]]+ secs\): user=<>, rip=[.:[:xdigit:]]+, lip=[.:[:xdigit:]]+, (TLS( handshaking)?(: Disconnected|: (SSL_[[:alnum:]]+)\(\) (syscall )?failed: [:._[:space:][:alnum:]-]+)?|secured), session=<[-\/+_[:alnum:]]+>$
+
+# dovecot: imap-login: Login: user=<{email}>, method=PLAIN, rip=130.75.5.212, lip=::1, mpid=16627, secured
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (pop3|imap)-login: Login: user=<[-_.@[:alnum:]]+>, method=[[:alnum:]-]+, rip=[.:[:xdigit:]]+, lip=[.:[:xdigit:]]+, mpid=[[:digit:]]+, (TLS( handshaking)?(: Disconnected|: (SSL_[[:alnum:]]+)\(\) (syscall )?failed: [:._[:space:][:alnum:]-]+)?|secured)$
+# dovecot: imap-login: Login: user=<{email}>, method={method}, rip={ip}, lip={ip}, mpid={mpid}, {SAME_MATCHES_AS_ABOVE}, session=<{session_id}>
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (pop3|imap)-login: Login: user=<[-_.@[:alnum:]]+>, method=[[:alnum:]-]+, rip=[.:[:xdigit:]]+, lip=[.:[:xdigit:]]+, mpid=[[:digit:]]+, (TLS( handshaking)?(: Disconnected|: (SSL_[[:alnum:]]+)\(\) (syscall )?failed: [:._[:space:][:alnum:]-]+)?|secured), session=<[-\/+_[:alnum:]]+>$
+# dovecot: imap-login: Login: user=<post@example.com>, method=PLAIN, rip=127.0.0.1, lip=127.0.0.2, mpid=2548, TLS, SSLv3 with cipher DHE-RSA-AES256-SHA (256/256 bits)
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (pop3|imap)-login: Login: user=<[-_.@[:alnum:]]+>, method=[[:alnum:]-]+, rip=[.:[:xdigit:]]+, lip=[.:[:xdigit:]]+, mpid=[[:digit:]]+, (TLS( handshaking)?(: Disconnected|: (SSL_[[:alnum:]]+)\(\) (syscall )?failed: [:._[:space:][:alnum:]-]+)?|secured), [[:alnum:]]+ with cipher .*$
+
+# dovecot: lmtp({id}): Disconnect from local: Client quit (in reset)
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: lmtp\([[:alnum:]]+\): (Connect|Disconnect) from ([._[:alnum:]-]+)(: Client quit \(in reset\))?$
+
+# dovecot: lmtp({id}, {email}): {session_id}: msgid=<{message_id}>: saved mail to {mailbox}
+# Jun 15 19:16:13 mail1 dovecot: lmtp(123, foo@example.com): 0xxxxxxxxxxxxxxQ: sieve: msgid=<20150615171613.6C70DA003C@example.com>: stored mail into mailbox 'INBOX'
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (deliver|lda|lmtp)\(([[:alnum:]]+, )?[-_.@[:alnum:]]+\): [-\/+_[:alnum:]]+: (sieve: )?msgid=<?[^\(]*>?( \((added by [^[:space:]]+|sfid-[_[:xdigit:]]+)\)?)?[[:space:]]*: (stored mail into mailbox '[-_.[:alnum:]]+'|saved mail to [-_.[:alnum:]]+|(forwarded|discarded duplicate forward) to <[^[:space:]]+>)$
+
+# dovecot: mysql({hostname}): Connected to database {database}
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: auth-worker\([[:digit:]]+\): (pg|my)sql\([._[:alnum:]-]+\): Connected to database [._[:alnum:]-]+$
+
+# Ignore messages caused by my monitoring server
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: imap-login: Aborted login \(no auth attempts in 0 secs\): user=<>, rip=2001:41d0:52:d00::2b4, lip=[.:[:xdigit:]]+
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: imap-login: Login: user=<[-_.@[:alnum:]]+>, method=[-[:alnum:]]+, rip=[.:[:xdigit:]]+, lip=[.:[:xdigit:]]+, mpid=[[:digit:]]+, (SSL|TLS), (SSLv[.[:digit:]]|TLSv[.[:digit:]]+) with cipher [[:alnum:]-]+ \([[:digit:]]{2,3}/[[:digit:]]{2,3} bits\)

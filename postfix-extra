@@ -1,0 +1,8 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/lmtp\[[[:digit:]]+\]: [[:alnum:]]+: to=<[_.@[:alnum:]-]+>, relay=[._[:alnum:]-]+\[private/dovecot-lmtp\], delay=[.[:digit:]]+, delays=[.\/[:digit:]]+, dsn=[.[:digit:]]+, status=sent \(250 .*\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: Anonymous TLS connection established from [._[:alnum:]-]+\[[.:[:xdigit:]]+\]: (SSLv[[:digit:]]+|TLSv[.[:digit:]]+) with cipher [[:alnum:]-]+ \([[:digit:]]+/[[:digit:]]+ bits\)$
+
+# Zabbix Monitoring
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: improper command pipelining after QUIT from miranda.disposed.de\[2001:41d0:52:d00::2b4\]:$
+
+# postfix/smtpd[9693]: warning: hostname 212-112-119-59.aknet.kg does not resolve to address 212.112.119.59: Name or service not known
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: warning: hostname [-._[:alnum:]]+ does not resolve to address [.[:xdigit:]]+: Name or service not known
