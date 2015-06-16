@@ -4,5 +4,6 @@
 # Zabbix Monitoring
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: improper command pipelining after QUIT from miranda.disposed.de\[2001:41d0:52:d00::2b4\]:$
 
-# postfix/smtpd[9693]: warning: hostname 212-112-119-59.aknet.kg does not resolve to address 212.112.119.59: Name or service not known
-^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: warning: hostname [-._[:alnum:]]+ does not resolve to address [.:[:xdigit:]]+: Name or service not known
+# postfix/smtpd[9693]: warning: hostname example.com does not resolve to address 127.0.0.1: Name or service not known
+# postfix/smtpd[2825]: warning: hostname example.com does not resolve to address 127.0.0.1
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix\/smtpd\[[[:digit:]]+\]: warning: hostname [-._[:alnum:]]+ does not resolve to address [.:[:xdigit:]]+(: Name or service not known)?
